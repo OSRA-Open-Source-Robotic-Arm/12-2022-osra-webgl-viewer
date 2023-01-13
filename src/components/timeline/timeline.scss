@@ -1,0 +1,236 @@
+@font-face {
+    font-family: 'helvetica-regular';
+    src: url(../../../public/fonts/HelveticaNowDisplay-Regular.ttf);
+}
+
+$line-height: .25rem;
+
+body {
+    margin: 0;
+}
+
+.timeline {
+    width: 100%;
+    height: 30%;
+    color: white;
+    font-size: .5rem;
+    position:absolute; 
+    display: flex;
+    bottom:0;    
+    font-family: 'helvetica-regular';
+}
+
+.timeline-positions, .preview-positions {
+    height: 100%;
+    width: 25%;
+    z-index: 5;
+}
+
+.timeline-positions {
+    box-shadow: 8px 0px 5px -2px rgba(0, 0, 0, .3);//0px 0px 15px -2px #000000;
+}
+
+.preview-positions {
+    box-shadow: -8px 0px 5px -2px rgba(0, 0, 0, .3);
+}
+
+.timeline-noms, .preview-noms {
+    display: flex;
+    //width: 100%;
+    height: 1.5rem;
+    justify-content: space-between;
+    background-color: #2C2C2C;
+    padding: .25rem;
+}
+
+.nom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5rem;
+}
+
+.lignes {
+    //width: 100%;
+    //height: 100%;
+    background-color: #1E1E1E;
+    padding: $line-height;
+}
+
+.select {
+    color: white;
+    font-size: .5rem;
+    background-color: #1E1E1E;
+    border-radius: 5rem;
+    border: none;
+}
+
+.number {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+    background-color: #2C2C2C;
+    padding: .2rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    border-radius: .5rem;
+}
+
+.send {
+    justify-content: center;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.unité-écrite {
+    color: #1E1E1E;
+}
+
+.nom-axe {
+    //font-family: 'helvetica-regular';
+    align-self: center;
+}
+
+.line {
+    background: #2C2C2C;
+    height: 2px;
+    width: 50%;
+    align-self: center;
+    border-radius: 1rem;
+}
+
+.line2 {
+    width: 50%;
+}
+
+.line3 {
+    width: 57%;
+}
+
+.add-position {
+    background: #2C2C2C 50% 50% / 50% 50% no-repeat url("../../../public/Rectangle 21.png");
+    width: 15px;
+    height: 15px;
+    border: 0;
+    border-radius: 100%;    
+    align-self: center;
+    cursor: pointer;
+}
+
+/*OLD SLIDER
+.slider {
+    align-self: center;
+    -webkit-appearance: none;
+    width: 50%;
+    height: 2px;
+    background: #2C2C2C;
+    //outline: none;
+    opacity: 0.7;
+}
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border: 0;
+    border-radius: 1rem;
+    background: url('../public/losange-rougepng.png') 10px / 10px;
+    cursor: pointer;
+}*/
+
+
+.reader {
+    
+    background: 50% 50% / 67% no-repeat linear-gradient(to right, #2C2C2C, #2C2C2C)
+              , no-repeat linear-gradient(to right, #1E1E1E, #1E1E1E);
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+}
+
+.secondes {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 1.5rem;
+    padding: 0.25rem;
+    background-color: #1E1E1E;
+}
+
+.lecteur {
+    z-index: 2;
+    //height: 100%;
+    padding: 0.25rem;
+    //background-color: #2C2C2C;
+    display: flex;
+    flex-direction: column;
+}
+
+.black-line {
+    background-color: #1E1E1E;
+    height: .1rem;
+    width: 100%;
+    margin-top: $line-height + 1.2rem;
+}
+
+#first-black-line {
+    margin-top: $line-height + .7rem;
+}
+
+/*
+.lecteur {
+    z-index: 2;
+    height: 475px;
+    position: absolute;
+    width: 2px;
+    background: green;
+    pointer-events: none;
+  }*/
+
+  img {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    }
+    
+.drag {
+    transform: translate(0px, -10px);
+    position: absolute;
+}
+.drag-pos {
+    width: 40%;
+    position: absolute;
+}
+.white-line {
+    background-color: white;
+    width: 1.5px;
+    height: 28vh;
+    display: flex;
+    justify-content: center;
+}
+
+.play, .previous, .next {
+    border: none;
+    width: 2vw;
+}
+.play {
+    background: center no-repeat url("../../../public/Play.png");
+}
+.previous {
+    background: left / 15px 15px no-repeat url("../../../public/Previous.png");
+    filter: invert(100%)
+}
+.next {
+    background: left / 15px 15px no-repeat url("../../../public/Next.png");
+    filter: invert(100%)
+}
+
+.box {
+    background-color: white;
+    height: 5px;
+    width: 5px;
+    border-radius: 100%;
+    //position: absolute;
+    
+}
