@@ -1,0 +1,111 @@
+@import '../../utils/scss/variables.scss';
+.preview {
+    height: 100%;
+    width: 25%;
+    z-index: 5;
+    box-shadow: -8px 0px 5px -2px rgba(0, 0, 0, .3);
+    
+    &_noms {
+        display: flex;
+        //width: 100%;
+        height: 1.5rem;
+        justify-content: space-between;
+        background-color: #2C2C2C;
+        padding: .25rem;
+
+        &_select {
+            color: white;
+            font-size: .5rem;
+            background-color: #1E1E1E;
+            border-radius: 5rem;
+            border: none;
+        }
+        
+        &_play,
+        &_previous,
+        &_next {
+            border: none;
+            width: 2vw;
+        }
+
+        &_play {
+            background: center no-repeat url("../../../public/Play.png");
+        }
+
+        &_previous {
+            background: left / 15px 15px no-repeat url("../../../public/Previous.png");
+            filter: invert(100%)
+        }
+
+        &_next {
+            background: left / 15px 15px no-repeat url("../../../public/Next.png");
+            filter: invert(100%)
+        }
+    }
+
+    &_lignes {
+        //width: 100%;
+        //height: 100%;
+        background-color: #1E1E1E;
+        padding: $line-height;
+
+        &_nom {
+            display: flex;
+            justify-content: space-between;
+            margin-top: .5rem;
+
+            &_axe {
+                //font-family: 'helvetica-regular';
+                align-self: center;
+            }
+
+            &_line {
+                background: #2C2C2C;
+                height: 2px;
+                width: 50%;
+                align-self: center;
+                border-radius: 1rem;
+            }
+
+            &_number {
+                display: flex;
+                justify-content: space-between;
+                width: 20%;
+                background-color: #2C2C2C;
+                padding: .2rem;
+                padding-left: .5rem;
+                padding-right: .5rem;
+                border-radius: .5rem;
+
+                &_unité-écrite {
+                    color: #1E1E1E;
+                }
+            }
+        
+            .line2 {
+                width: 50%;
+            }
+        
+            .line3 {
+                width: 57%;
+            }
+
+            .send {
+                justify-content: center;
+                background-color: #FFFFFF;
+                color: #000000;
+                margin-right: 4%;
+            }
+        }
+        
+    }
+    /*.add-position {
+        background: #2C2C2C 50% 50% / 50% 50% no-repeat url("../../../public/Rectangle 21.png");
+        width: 15px;
+        height: 15px;
+        border: 0;
+        border-radius: 100%;
+        align-self: center;
+        cursor: pointer;
+    }*/
+}
