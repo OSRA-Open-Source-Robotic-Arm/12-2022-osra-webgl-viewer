@@ -1,6 +1,7 @@
-import './App.scss';
+import './App.scss'
+import useStore from './store.js'
 
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react"
 //import VideoEditingTimeline from "video-editing-timeline";
 
 import Timeline from "./components/timeline/timeline.jsx"
@@ -12,7 +13,7 @@ function App() {
       <ThreeScene />
       <Timeline />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
