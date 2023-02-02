@@ -1,9 +1,11 @@
 import { create } from 'zustand'
 
 const useStore = create((set) => ({
-  bears: 0,
-  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 }),
+  keyframes: [{
+  }],
+  animTime: 30.5,
+  setAnimTime: (time) => set({ animTime: time }),
+
 }))
 
 export default useStore
