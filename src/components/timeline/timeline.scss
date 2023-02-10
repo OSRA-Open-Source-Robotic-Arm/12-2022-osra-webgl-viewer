@@ -1,14 +1,13 @@
-@font-face {
-    font-family: 'helvetica-regular';
-    src: url(../../../public/fonts/HelveticaNowDisplay-Regular.ttf);
-}
-
+//Mettre le max dans les sous-composants
+//Changer dans left_side.scss les pb de scoping
+//Changer les noms qui pourraient déjà exister (input par exemple)
+//Mettre les mêmes noms de la classe mère que le nom du component (à la place de preview par ex)
 
 .timeline {
     width: 100%;
     height: 30%;
     color: white;
-    font-size: .5rem;
+    font-size: .75rem;
     position: absolute;
     display: flex;
     bottom: 0;

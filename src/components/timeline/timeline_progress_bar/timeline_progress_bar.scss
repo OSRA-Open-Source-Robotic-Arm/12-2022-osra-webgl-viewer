@@ -1,23 +1,26 @@
-@import '../../utils/scss/variables.scss';
+@import '../../../utils/scss/variables.scss';
 .reader {
 
-    background: 50% 50% / 67% no-repeat linear-gradient(to right, #2C2C2C, #2C2C2C), no-repeat linear-gradient(to right, #1E1E1E, #1E1E1E);
+    background: 50% 50% / 73% no-repeat linear-gradient(to right, #2C2C2C, #2C2C2C), no-repeat linear-gradient(to right, #1E1E1E, #1E1E1E);
     width: 50%;
     height: 100%;
     z-index: 1;
+    text-align: -webkit-center;//À changer ?
 
     &_secondes {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
+        width: 75%;
         height: 1.5rem;
         padding: 0.25rem;
         background-color: #1E1E1E;
     }
 
     &_drag-pos {
-        width: 40%;
+        //width: 36.75%;
         position: absolute;
+        //overflow:hidden;
 
         .drag {
             transform: translate(0px, -10px);
@@ -29,7 +32,8 @@
             height: 28vh;
             display: flex;
             justify-content: center;
-            
+            margin-top: 1vh;
+            margin-left: .25vw;
             img {
                 -webkit-user-select: none;
                 -khtml-user-select: none;

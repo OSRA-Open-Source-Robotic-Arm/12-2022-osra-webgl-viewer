@@ -1,18 +1,18 @@
 import "./timeline.scss"
 import Draggable from 'react-draggable';
-import Left_side from '../left_side/left_side'
-import Middle_side from '../middle_side/middle_side'
-import Right_side from '../right_side/right_side'
+import Positions from './positions/positions'
+import TimelineProgressBar from './timeline_progress_bar/timeline_progress_bar'
+import AnimationController from './animation_controller/animation_controller'
 
 function Timeline() {
 
   return (
     <div className="timeline">
-        <Left_side />
+        <Positions />
 
-        <Middle_side />
+        <TimelineProgressBar />
 
-        <Right_side />
+        <AnimationController />
       </div>
   );
   

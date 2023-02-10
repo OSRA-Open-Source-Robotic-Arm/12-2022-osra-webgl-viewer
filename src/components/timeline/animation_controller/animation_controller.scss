@@ -1,4 +1,4 @@
-@import '../../utils/scss/variables.scss';
+@import '../../../utils/scss/variables.scss';
 .preview {
     height: 100%;
     width: 25%;
@@ -29,16 +29,17 @@
         }
 
         &_play {
-            background: center no-repeat url("../../../public/Play.png");
+            background:  left / 11px 11px no-repeat url("../../../../public/bouton-jouer.svg");
+            filter: invert(100%)
         }
 
         &_previous {
-            background: left / 15px 15px no-repeat url("../../../public/Previous.png");
+            background: left / 15px 15px no-repeat url("../../../../public/Previous.png");
             filter: invert(100%)
         }
 
         &_next {
-            background: left / 15px 15px no-repeat url("../../../public/Next.png");
+            background: left / 15px 15px no-repeat url("../../../../public/Next.png");
             filter: invert(100%)
         }
     }
