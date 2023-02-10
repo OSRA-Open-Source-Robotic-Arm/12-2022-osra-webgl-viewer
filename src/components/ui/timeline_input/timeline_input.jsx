@@ -11,7 +11,7 @@ export default function TimelineInput({ input_value, unit, input_marginLeft, onC
     }
     return (
         <React.Fragment>
-            <input className="timeline_input_input" value={stateValue} onChange={handleChange} type="number"></input>
+            <input className="timeline_input_input" value={stateValue} onChange={handleChange}></input>
             <span className="timeline_input_span" style={{ marginLeft: input_marginLeft, paddingRight: "5%" }}>{unit}</span>
         </React.Fragment>
     )
