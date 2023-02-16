@@ -60,6 +60,15 @@ export default function AnimationController () {
     }
     
     function onChangeAnimationTime(newTimeValue) {
+      keyFrames.forEach((element) => element.x = element.x + 1000);//map(keyframe => keyframe.x = keyframe.x + 300)
+      console.log(keyFrames[0].x)
+      console.log(keyFrames[0].x + 5000)
+      keyFrames[0].x = keyFrames[0].x + 5000
+      
+      for (let i = 0; i < keyFrames.length; i++) {
+        document.getElementById(i.toString()).style.left = (100 * keyFrames[i].x / window.innerWidth + .3) +'vw';
+      }
+      console.log(keyFrames)
       useStore.setState({ animTime: newTimeValue })
       console.log(useStore.getState().animTime)
     }

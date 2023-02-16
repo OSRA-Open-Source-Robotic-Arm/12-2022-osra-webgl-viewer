@@ -45,6 +45,8 @@ export default function TimelineProgressBar () {
   const dragTarget = useRef(null);
 
   useEffect(() => {
+    time = document.getElementById('animation_time').input_value;
+
     timeline_draggable_first_position = document.getElementById('drag').getBoundingClientRect().x;
 
     dragInstance.current = Draggable.create(dragTarget.current, {
