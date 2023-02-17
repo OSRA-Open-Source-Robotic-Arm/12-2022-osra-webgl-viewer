@@ -34,16 +34,21 @@ class MainThreeScene {
     const gridHelper = new THREE.GridHelper(10, 10)
     this.scene.add(gridHelper)
 
-    // this.scene.add(new THREE.Mesh(new THREE.BoxGeometry, new THREE.MeshNormalMaterial))
+
+    AnimManager.addonUpdateCallBack(this.onTLUpdate, "three_tl_updater")
 
     //RENDER LOOP AND WINDOW SIZE UPDATER SETUP
     window.addEventListener("resize", this.resizeCanvas)
     RAF.subscribe('threeSceneUpdate', this.update)
   }
 
+  onTLUpdate(animData) {
+    console.log(animData)
+  }
+
+
   update() {
     this.renderer.render(this.scene, this.camera)
-
   }
 
   resizeCanvas() {

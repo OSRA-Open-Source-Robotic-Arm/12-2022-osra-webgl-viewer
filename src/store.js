@@ -21,13 +21,15 @@ const useStore = create((set) => ({
       id: 2,
     }],
   animTime: 30.5,
+  currentTime: 0,
   setAnimTime: (time) => set({ animTime: time }),
-  addKeyFrame: (keyframe) => ({
+  setCurrentTime: (time) => set({ setCurrentTime: time }),
 
-  }),
-  removeKeyFrame: (keyframe) => ({
+  addKeyFrame: (keyframe) =>
+    set((state) => ({ keyframes: [...state.keyframes, keyframe] })),
 
-  })
+  removeKeyFrame: (id) =>
+    set((state) => ({ keyframes: state.keyframes.filter(obj => obj.id !== id) })),
 }))
 
 export default useStore

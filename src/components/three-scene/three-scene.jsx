@@ -19,7 +19,7 @@ function ThreeScene() {
   useEffect(() => {
     console.log('yo')
 
-    AnimManager.update(keyframes)
+    AnimManager.updateKeyframes(keyframes)
   }, [keyframes])
 
   return (
