@@ -3,7 +3,7 @@ import * as THREE from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import ThreeRobot from './three-robot.js'
-import AnimManager from './anim-manager.js'
+import AnimManager from '../../../utils/js/anim-manager.js'
 
 import RAF from '../../../utils/js/raf.js'
 
@@ -31,8 +31,8 @@ class MainThreeScene {
     this.controls.minDistance = 0
 
     ThreeRobot.init(this.scene)
-    const gridHelper = new THREE.GridHelper(10, 10);
-    this.scene.add(gridHelper);
+    const gridHelper = new THREE.GridHelper(10, 10)
+    this.scene.add(gridHelper)
 
     // this.scene.add(new THREE.Mesh(new THREE.BoxGeometry, new THREE.MeshNormalMaterial))
 
