@@ -18,16 +18,24 @@ class AnimManager {
   init() {
   }
 
+  addKeyframe() {
+
+  }
+
+  removeKeyframe() {
+
+  }
+
   update(keyframes) {
     this.timeline.clear()
     keyframes.forEach(key => {
       if (key.joint == "j0")
-        this.timeline.to(this.params, { j0: key.value }, key.time);
+        this.timeline.to(this.params, { j0: key.value }, key.time)
       if (key.joint == "j1")
-        this.timeline.to(this.params, { j1: key.value }, key.time);
+        this.timeline.to(this.params, { j1: key.value }, key.time)
       if (key.joint == "j2")
-        this.timeline.to(this.params, { j2: key.value }, key.time);
-    });
+        this.timeline.to(this.params, { j2: key.value }, key.time)
+    })
     this.timeline.play()
   }
 
