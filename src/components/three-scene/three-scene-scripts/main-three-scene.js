@@ -3,7 +3,6 @@ import * as THREE from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import ThreeRobot from './three-robot.js'
-import AnimManager from '../../../utils/js/anim-manager.js'
 
 import RAF from '../../../utils/js/raf.js'
 
@@ -35,16 +34,12 @@ class MainThreeScene {
     this.scene.add(gridHelper)
 
 
-    AnimManager.addonUpdateCallBack(this.onTLUpdate, "three_tl_updater")
 
     //RENDER LOOP AND WINDOW SIZE UPDATER SETUP
     window.addEventListener("resize", this.resizeCanvas)
     RAF.subscribe('threeSceneUpdate', this.update)
   }
 
-  onTLUpdate(animData) {
-    console.log(animData)
-  }
 
 
   update() {
