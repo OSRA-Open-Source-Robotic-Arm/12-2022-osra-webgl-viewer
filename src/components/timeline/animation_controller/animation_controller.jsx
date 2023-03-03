@@ -1,9 +1,9 @@
 import "./animation_controller.scss"
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import TimelineInput from '../../ui/timeline_input/timeline_input'
+import React, { useEffect, useRef, useState } from "react";
 import useStore from "../../../store";
+import { gsap } from "gsap";
 import { keyFrames } from "../positions/positions";
+import TimelineInput from '../../ui/timeline_input/timeline_input'
 
 import AnimManager from "../../../utils/js/anim-manager.js"
 
@@ -11,6 +11,7 @@ export default function AnimationController() {
   var time = 25;
   var timeline_draggable_first_position = 0;
   const animTime = useStore((state) => state.animTime)
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     timeline_draggable_first_position = document.getElementById('drag').getBoundingClientRect().x;
@@ -22,10 +23,16 @@ export default function AnimationController() {
 
 
   function play(time) {
-    //gsap.from('#drag-pos', { duration: 1, x: '200px', delay: .5 })
     AnimManager.timeline.play()
-    gsap.to('.draggable'
-      , { duration: time, x: '36.75vw', delay: .5 })
+    setIsPlaying(true)
+
+    // gsap.to('.draggable'
+    //   , { duration: time, x: '36.75vw', delay: .5 })
+  }
+
+  function pause() {
+    AnimManager.timeline.pause()
+    setIsPlaying(false)
   }
 
   function next() {
@@ -83,7 +90,11 @@ export default function AnimationController() {
             12’021’’
                     </div>
           <button className="preview_noms_previous" onClick={() => prev()}></button>
-          <button className="preview_noms_play" onClick={() => play(time)}></button>
+
+          {isPlaying
+            ? <button className="preview_noms_pause" onClick={() => pause()}></button>
+            : <button className="preview_noms_play" onClick={() => play(time)}></button>
+          }
           <button className="preview_noms_next" onClick={() => next()}></button>
         </div>
       </div>

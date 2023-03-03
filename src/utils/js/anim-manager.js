@@ -13,6 +13,7 @@ class AnimManager {
         this.onTLUpdate()
       },
     })
+    this.timeline.pause()
   }
 
   addonUpdateCallBack(callback, name) {

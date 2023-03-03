@@ -1,10 +1,11 @@
 @import '../../../utils/scss/variables.scss';
+
 .preview {
     height: 100%;
     width: 25%;
     z-index: 5;
     box-shadow: -8px 0px 5px -2px rgba(0, 0, 0, .3);
-    
+
     &_noms {
         display: flex;
         //width: 100%;
@@ -20,7 +21,7 @@
             border-radius: 5rem;
             border: none;
         }
-        
+
         &_play,
         &_previous,
         &_next {
@@ -29,8 +30,14 @@
         }
 
         &_play {
-            background:  left / 11px 11px no-repeat url("../../../../public/bouton-jouer.svg");
+            background: left / 11px 11px no-repeat url("../../../../public/bouton-jouer.svg");
             filter: invert(100%)
+        }
+
+        &_pause {
+            width: 20px;
+            height: 20px;
+            background: red;
         }
 
         &_previous {
@@ -82,11 +89,11 @@
                     color: #1E1E1E;
                 }
             }
-        
+
             .line2 {
                 width: 50%;
             }
-        
+
             .line3 {
                 width: 57%;
             }
@@ -98,8 +105,9 @@
                 margin-right: 4%;
             }
         }
-        
+
     }
+
     /*.add-position {
         background: #2C2C2C 50% 50% / 50% 50% no-repeat url("../../../public/Rectangle 21.png");
         width: 15px;

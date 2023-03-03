@@ -2,24 +2,36 @@ import "./timeline_progress_bar.scss"
 import React, { useEffect, useRef } from "react";
 import useStore from "../../../store";
 import { keyFrames } from "../positions/positions"
-
-//import Draggable from 'react-draggable';
+import AnimManager from "../../../utils/js/anim-manager.js"
 import { gsap } from "gsap";
 
 import { Draggable } from "gsap/Draggable";
 gsap.registerPlugin(Draggable);
 
 export default function TimelineProgressBar() {
-  var time = 35;//useStore.getState().animTime;
-  //var draggableOrNot = true;
+  var time = 35;
   var timeline_draggable_first_position = 0;
+  const dragInstance = useRef(null);
+  const dragTarget = useRef(null);
 
-  /*function draggableOrNot() {
-    return true
-  }*/
+  useEffect(() => {
+    timeline_draggable_first_position = document.getElementById('drag').getBoundingClientRect().x;
+
+    // dragInstance.current = Draggable.create(dragTarget.current, {
+    //   type: "x",
+    //   bounds: { top: 100, left: 0, width: window.innerWidth / (1707 / 630), height: 800 },
+    //   onDragEnd() {
+    //     console.log(this);
+    //   }
+    // });
+
+    AnimManager.addonUpdateCallBack(onTlUpdate, "timeline_progress_bar_update")
+  }, []);
+
 
   function onTlUpdate(data) {
-    console.log(data)
+    console.log(AnimManager.timeline.time())
+    dragTarget.current.style = `translate(${AnimManager.timeline.time() * 100}px, -10px);`
   }
 
   function five_multiple(number) {
@@ -43,20 +55,6 @@ export default function TimelineProgressBar() {
 
   }
 
-  const dragInstance = useRef(null);
-  const dragTarget = useRef(null);
-
-  useEffect(() => {
-    timeline_draggable_first_position = document.getElementById('drag').getBoundingClientRect().x;
-
-    dragInstance.current = Draggable.create(dragTarget.current, {
-      type: "x",
-      bounds: { top: 100, left: 0, width: window.innerWidth / (1707 / 630), height: 800 },
-      onDragEnd() {
-        console.log(this);
-      }
-    });
-  }, []);
 
   window.addEventListener("resize", (event) => {//To resize the width of the draggable white line when the screen size changes
     dragInstance.current[0].vars.bounds.width = window.innerWidth / (1707 / 630);
@@ -89,8 +87,8 @@ export default function TimelineProgressBar() {
                         </div>
                     </div>
                 </Draggable> */}
-          <div className="drag">
-            <div className="draggable" ref={dragTarget}>
+          <div className="drag" ref={dragTarget}>
+            <div className="draggable" >
               <div>
                 <div className="white-line">
                   <img src="Group 1.svg" draggable="false" id="drag" className="drag" alt="Girl in a jacket" width="15" height="20"></img>
