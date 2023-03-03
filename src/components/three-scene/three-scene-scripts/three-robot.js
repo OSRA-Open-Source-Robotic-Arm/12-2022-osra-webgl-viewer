@@ -49,7 +49,8 @@ class ThreeRobot {
 
 
   onTLUpdate(animData) {
-    console.log(animData)
+    if (this.joints.length === 0)
+      return
     this.joints[0].rotation.y = animData.j0
     this.joints[1].rotation.z = animData.j1
     this.joints[2].rotation.z = animData.j2

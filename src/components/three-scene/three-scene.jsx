@@ -12,13 +12,10 @@ function ThreeScene() {
   const threeContainer = useRef(null)
 
   useEffect(() => {
-    console.log('hey')
     MainThreeScene.init(threeContainer.current)
   }, [])
 
   useEffect(() => {
-    console.log('yo')
-
     AnimManager.updateKeyframes(keyframes)
   }, [keyframes])
 

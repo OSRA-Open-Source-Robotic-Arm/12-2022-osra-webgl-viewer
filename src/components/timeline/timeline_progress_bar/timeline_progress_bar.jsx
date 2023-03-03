@@ -18,6 +18,10 @@ export default function TimelineProgressBar() {
     return true
   }*/
 
+  function onTlUpdate(data) {
+    console.log(data)
+  }
+
   function five_multiple(number) {
     while (number % 5 !== 0) {
       number += 1;

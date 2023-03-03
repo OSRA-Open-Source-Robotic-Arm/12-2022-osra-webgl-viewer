@@ -5,6 +5,8 @@ import TimelineInput from '../../ui/timeline_input/timeline_input'
 import useStore from "../../../store";
 import { keyFrames } from "../positions/positions";
 
+import AnimManager from "../../../utils/js/anim-manager.js"
+
 export default function AnimationController() {
   var time = 25;
   var timeline_draggable_first_position = 0;
@@ -15,22 +17,23 @@ export default function AnimationController() {
   }, []);
 
   useEffect(() => {
+    // AnimManager.timeline.duration(animTime)
   }, [animTime]);
 
 
   function play(time) {
     //gsap.from('#drag-pos', { duration: 1, x: '200px', delay: .5 })
+    AnimManager.timeline.play()
     gsap.to('.draggable'
       , { duration: time, x: '36.75vw', delay: .5 })
   }
 
   function next() {
-    if (keyFrames.length == 0) return
+    if (keyFrames.length === 0) return
 
     //gsap.from('#drag-pos', { duration: 1, x: '200px', delay: .5 })
     const cursorPosition = document.getElementsByClassName('draggable')[0].getBoundingClientRect().x;
-    console.log(cursorPosition)
-    console.log(keyFrames[0].x)
+
     const newPosition = keyFrames.reduce(function (prev, curr) {
       return (prev.x + 2.5 > cursorPosition + 10 && Math.abs(prev.x + 2.5 - cursorPosition) < Math.abs(curr.x + 2.5 - cursorPosition)) ? prev : curr;
     }).x;
@@ -42,7 +45,7 @@ export default function AnimationController() {
   }
 
   function prev() {
-    if (keyFrames.length == 0) {
+    if (keyFrames.length === 0) {
       gsap.to('.draggable'
         , { duration: '2', x: 0, delay: .5 })
       return

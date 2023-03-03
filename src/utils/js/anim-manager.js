@@ -11,11 +11,8 @@ class AnimManager {
     this.timeline = gsap.timeline({
       onUpdate: () => {
         this.onTLUpdate()
-      }
+      },
     })
-  }
-
-  init() {
   }
 
   addonUpdateCallBack(callback, name) {
