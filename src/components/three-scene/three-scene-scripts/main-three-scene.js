@@ -3,6 +3,8 @@ import * as THREE from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 import ThreeRobot from './three-robot.js'
+import AnimManager from './anim-manager.js'
+
 import RAF from '../../../utils/js/raf.js'
 
 class MainThreeScene {

@@ -4,13 +4,23 @@ import { useEffect } from "react";
 import { useRef } from "react";
 
 import MainThreeScene from "./three-scene-scripts/main-three-scene.js"
+import AnimManager from "./three-scene-scripts/anim-manager.js"
+import useStore from "../../store.js";
 
 function ThreeScene() {
+  const keyframes = useStore((state) => state.keyframes)
   const threeContainer = useRef(null)
 
   useEffect(() => {
+    console.log('hey')
     MainThreeScene.init(threeContainer.current)
   }, [])
+
+  useEffect(() => {
+    console.log('yo')
+
+    AnimManager.update(keyframes)
+  }, [keyframes])
 
   return (
     <div className="three-scene">
