@@ -5,6 +5,7 @@ import TimelineInput from '../../ui/timeline_input/timeline_input'
 import useStore from "../../../store";
 import { keyFrames } from "../positions/positions";
 
+import AnimManager from "../../../utils/js/anim-manager.js"
 export var timeline_draggable_first_position = 0;
 
 export default function AnimationController() {
@@ -20,6 +21,7 @@ export default function AnimationController() {
   }, []);
 
   useEffect(() => {
+    // AnimManager.timeline.duration(animTime)
   }, [animTime]);
   useEffect(() => {
   }, [armPosition]);
@@ -28,15 +30,17 @@ export default function AnimationController() {
 
   function play(time) {
     //gsap.from('#drag-pos', { duration: 1, x: '200px', delay: .5 })
+    AnimManager.timeline.play()
     gsap.to('.draggable'
       , { duration: time, x: '36.75vw', delay: .5 })
   }
 
   function next() {
-    if (keyFrames.length == 0) return
+    if (keyFrames.length === 0) return
 
     //gsap.from('#drag-pos', { duration: 1, x: '200px', delay: .5 })
     const cursorPosition = document.getElementsByClassName('draggable')[0].getBoundingClientRect().x;
+
     const newPosition = keyFrames.reduce(function (prev, curr) {
       return (prev.prevNext + 2.5 > cursorPosition + 10 && Math.abs(prev.prevNext + 2.5 - cursorPosition) < Math.abs(curr.prevNext + 2.5 - cursorPosition)) ? prev : curr;
     }).prevNext;
@@ -48,7 +52,7 @@ export default function AnimationController() {
   }
 
   function prev() {
-    if (keyFrames.length == 0) {
+    if (keyFrames.length === 0) {
       gsap.to('.draggable'
         , { duration: '2', x: 0, delay: .5 })
       return

@@ -13,6 +13,23 @@ gsap.registerPlugin(Draggable);
 export default function TimelineProgressBar() {
   const animTime = useStore((state) => state.animTime)
   var time = 35;//useStore.getState().animTime;
+  //var draggableOrNot = true;
+  var timeline_draggable_first_position = 0;
+
+  /*function draggableOrNot() {
+    return true
+  }*/
+
+  function onTlUpdate(data) {
+    console.log(data)
+  }
+
+  function five_multiple(number) {
+    while (number % 5 !== 0) {
+      number += 1;
+    }
+    return number;
+  }
 
   var timeIntervalles = _instance.update(animTime);
 

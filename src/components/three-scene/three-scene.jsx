@@ -1,25 +1,22 @@
 import "./three-scene.scss"
 
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useEffect } from "react"
+import { useRef } from "react"
 
 import MainThreeScene from "./three-scene-scripts/main-three-scene.js"
-import AnimManager from "./three-scene-scripts/anim-manager.js"
-import useStore from "../../store.js";
+import AnimManager from "../../utils/js/anim-manager.js"
+import useStore from "../../store.js"
 
 function ThreeScene() {
   const keyframes = useStore((state) => state.keyframes)
   const threeContainer = useRef(null)
 
   useEffect(() => {
-    console.log('hey')
     MainThreeScene.init(threeContainer.current)
   }, [])
 
   useEffect(() => {
-    console.log('yo')
-
-    AnimManager.update(keyframes)
+    AnimManager.updateKeyframes(keyframes)
   }, [keyframes])
 
   return (
@@ -27,7 +24,7 @@ function ThreeScene() {
       <div className="three-scene_container" ref={threeContainer}></div>
 
     </div>
-  );
+  )
 }
 
-export default ThreeScene;
+export default ThreeScene
