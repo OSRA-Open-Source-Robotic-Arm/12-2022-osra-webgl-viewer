@@ -9,7 +9,9 @@ import { Draggable } from "gsap/Draggable";
 gsap.registerPlugin(Draggable);
 
 export default function TimelineProgressBar() {
-  var time = 35;
+  const animTime = useStore((state) => state.animTime)
+  var time = 35;//useStore.getState().animTime;
+  //var draggableOrNot = true;
   var timeline_draggable_first_position = 0;
   const dragInstance = useRef(null);
   const dragTarget = useRef(null);
@@ -41,20 +43,14 @@ export default function TimelineProgressBar() {
     return number;
   }
 
-  function log() {//A supprimer
-    console.log(window.innerWidth)
-    console.log(100 * document.getElementById('drag').getBoundingClientRect().x / window.innerWidth)
-    console.log("ici")
+  // var timeIntervalles = _instance.update(animTime);
 
-    console.log((document.getElementById('drag').getBoundingClientRect().x - timeline_draggable_first_position) * .5 * .73 / 35)
-    console.log(timeline_draggable_first_position)
+  var timeline_draggable_first_position = 0;
 
-    if (keyFrames.length != 0) {
-      console.log((document.getElementById('drag').getBoundingClientRect().x - keyFrames[0].getBoundingClientRect().x - 1.75) / 12)
-    }
 
-  }
-
+  useEffect(() => {
+    // var timeIntervalles = _instance.update(animTime);
+  }, [animTime]);
 
   window.addEventListener("resize", (event) => {//To resize the width of the draggable white line when the screen size changes
     dragInstance.current[0].vars.bounds.width = window.innerWidth / (1707 / 630);
@@ -65,30 +61,12 @@ export default function TimelineProgressBar() {
       <div className="reader_background">
       </div>
       <div className="reader_secondes">
-        {[...Array(five_multiple(time + 5) / 5).keys()].map(x => x * 5).map((second, index) => (
+        {/* {timeIntervalles.map(x => x * 5).map((second, index) => (
           <div key={index}>{second}</div>
-        ))}
-        <div className="reader_drag-pos" id="drag-pos" onClick={() => log()}>
-          {/* <Draggable onStart={() => draggableOrNot()}
-                id="draggable"
-                axis="x"
-                bounds={{left: 0, top: 0, right: 630, bottom: 0}}
-                handle=".handle"
-                defaultPosition={{x: 0, y: 0}}
-                position={null}
-                scale={1}>
-                    <div className="drag">
-                        <div className="handle">
-                            <div>
-                                <div className="white-line">
-                                    <img src="Group 1.svg" draggable="false" id="drag" className="drag" alt="Girl in a jacket" width="15" height="20"></img>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Draggable> */}
-          <div className="drag" ref={dragTarget}>
-            <div className="draggable" >
+        ))} */}
+        <div className="reader_drag-pos" id="drag-pos">
+          <div className="drag">
+            <div className="draggable" ref={dragTarget}>
               <div>
                 <div className="white-line">
                   <img src="Group 1.svg" draggable="false" id="drag" className="drag" alt="Girl in a jacket" width="15" height="20"></img>
