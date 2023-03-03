@@ -75,7 +75,19 @@
                 }
             }
         }
-        
+        &_delete-keyFrame {
+            display: flex;
+            justify-content: center;
+
+            &_button {
+                background-color: #2C2C2C;
+                color: white;
+                margin-top: 2vh;
+                padding: 2%;
+                border-radius: 3vw;
+                border-color: transparent;
+            }
+        }
     }
 }
 

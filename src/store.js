@@ -23,6 +23,8 @@ const useStore = create((set) => ({
   animTime: 30.5,
   currentTime: 0,
   setAnimTime: (time) => set({ animTime: time }),
+  armPosition: 'arm_position',
+  setArmPosition: (position) => set({ armPosition: position }),
   setCurrentTime: (time) => set({ setCurrentTime: time }),
 
   addKeyFrame: (keyframe) =>
