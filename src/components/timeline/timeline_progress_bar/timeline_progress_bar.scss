@@ -1,71 +1,66 @@
 @import '../../../utils/scss/variables.scss';
+
 .reader {
 
-    background: 50% 50% / 73% no-repeat linear-gradient(to right, #2C2C2C, #2C2C2C), no-repeat linear-gradient(to right, #1E1E1E, #1E1E1E);
-    width: 50%;
-    height: 100%;
-    z-index: 1;
-    text-align: -webkit-center;//À changer ?
+  background: 50% 50% / 73% no-repeat linear-gradient(to right, #2C2C2C, #2C2C2C), no-repeat linear-gradient(to right, #1E1E1E, #1E1E1E);
+  width: 50%;
+  height: 100%;
+  z-index: 1;
+  text-align: -webkit-center; //À changer ?
 
-    &_secondes {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 75%;
-        height: 1.5rem;
-        padding: 0.25rem;
-        background-color: #1E1E1E;
-    }
+  &_secondes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    height: 1.5rem;
+    background-color: #1E1E1E;
+    position: relative;
 
-    &_drag-pos {
-        //width: 36.75%;
+
+    &_scraper {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+
+      &_head {
+        width: 16px;
+        height: auto;
+      }
+
+      &_line {
+        width: 2px;
+        height: 300px;
         position: absolute;
-        //overflow:hidden;
+        top: 0;
+        left: 7px;
+        background: white;
+      }
+    }
+  }
 
-        .drag {
-            transform: translate(0px, -10px);
-            position: absolute;
-        }
-        .white-line {
-            background-color: white;
-            width: 1.5px;
-            height: 28vh;
-            display: flex;
-            justify-content: center;
-            margin-top: 1vh;
-            margin-left: .25vw;
-            img {
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -o-user-select: none;
-                user-select: none;
-            }
-        }
+
+  &_lecteur {
+    z-index: 2;
+    //height: 100%;
+    padding: 0.25rem;
+    //background-color: #2C2C2C;
+    display: flex;
+    flex-direction: column;
+
+    &_black-line {
+      background-color: #1E1E1E;
+      height: .1rem;
+      width: 100%;
+      margin-top: $line-height + 1.2rem;
     }
 
-
-    &_lecteur {
-        z-index: 2;
-        //height: 100%;
-        padding: 0.25rem;
-        //background-color: #2C2C2C;
-        display: flex;
-        flex-direction: column;
-        
-        &_black-line {
-            background-color: #1E1E1E;
-            height: .1rem;
-            width: 100%;
-            margin-top: $line-height + 1.2rem;
-        }
-
-        #first-black-line {
-            margin-top: $line-height + .7rem;
-        }
+    #first-black-line {
+      margin-top: $line-height + .7rem;
     }
+  }
 
-    /*
+  /*
     .lecteur {
     z-index: 2;
     height: 475px;
