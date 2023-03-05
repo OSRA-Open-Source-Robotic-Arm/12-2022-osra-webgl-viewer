@@ -33,7 +33,7 @@ export default function TimelineProgressBar() {
 
   function onTlUpdate(data) {
     console.log(AnimManager.timeline.time())
-    dragTarget.current.style = `translate(${AnimManager.timeline.time() * 100}px, -10px);`
+    dragTarget.current.style = `transform: translate(${AnimManager.timeline.time() * 100}px, -10px);`
   }
 
   function five_multiple(number) {
@@ -65,8 +65,8 @@ export default function TimelineProgressBar() {
           <div key={index}>{second}</div>
         ))} */}
         <div className="reader_drag-pos" id="drag-pos">
-          <div className="drag">
-            <div className="draggable" ref={dragTarget}>
+          <div className="drag" ref={dragTarget}>
+            <div className="draggable" >
               <div>
                 <div className="white-line">
                   <img src="Group 1.svg" draggable="false" id="drag" className="drag" alt="Girl in a jacket" width="15" height="20"></img>
