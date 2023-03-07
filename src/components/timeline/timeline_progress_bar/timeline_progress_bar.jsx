@@ -11,16 +11,18 @@ export default function TimelineProgressBar() {
   const dragTarget = useRef(null)
   const setCurrentTime = useStore(state => state.setCurrentTime)
 
+
   useEffect(() => {
     AnimManager.addonUpdateCallBack(onTlUpdate, "timeline_progress_bar_update")
     TimeLineScraperManager.init(dragTarget.current,
       scrapeSpace.current, setCurrentTime, animTime)
+
   }, [])
 
 
   function onTlUpdate(data) {
-    console.log(AnimManager.timeline.time())
-    dragTarget.current.style = `translate(${AnimManager.timeline.time() * 100}px, -10px);`
+
+    // dragTarget.current.style = `translate(${AnimManager.timeline.time() * 100}px, -10px);`
   }
 
   useEffect(() => {

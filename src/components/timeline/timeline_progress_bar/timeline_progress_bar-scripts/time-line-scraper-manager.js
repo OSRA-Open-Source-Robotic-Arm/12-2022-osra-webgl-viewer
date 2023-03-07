@@ -41,8 +41,9 @@ class TimeLineScraperManager {
       return
     this.offset = e.clientX - this.mouseXStart + this.lastOffset
     this.offset = Math.min(Math.max(this.offset, 0), this.scrapeSpace.clientWidth)
-    let animfac = this.offset / this.scrapeSpace.clientWidth
-    console.log(animfac * this.animTime)
+    const animfac = this.offset / this.scrapeSpace.clientWidth
+    const currentTime = animfac * this.animTime
+    this.setCurrentTime(currentTime)
     this.moveTo(this.offset)
     // this.scraper
   }
