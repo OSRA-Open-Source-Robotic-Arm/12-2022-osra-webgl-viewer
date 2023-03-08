@@ -9,11 +9,16 @@ import useStore from "../../store.js"
 
 function ThreeScene() {
   const keyframes = useStore((state) => state.keyframes)
+  const currentTime = useStore((state) => state.currentTime)
   const threeContainer = useRef(null)
 
   useEffect(() => {
     MainThreeScene.init(threeContainer.current)
   }, [])
+
+  useEffect(() => {
+    AnimManager.timeline.time(currentTime)
+  }, [currentTime])
 
   useEffect(() => {
     AnimManager.updateKeyframes(keyframes)

@@ -2,11 +2,7 @@ import { gsap } from "gsap"
 class AnimManager {
   constructor() {
     this.bind()
-    this.animationData = {
-      j0: 0,
-      j1: 0,
-      j2: 0,
-    }
+    this.animationData = []
     this.onUpdateCallBacks = []
     this.timeline = gsap.timeline({
       onUpdate: () => {
@@ -26,15 +22,31 @@ class AnimManager {
     })
   }
 
-  updateKeyframes(keyframes) {
+  updateKeyframes(keyframes, animTime) {
     this.timeline.clear()
-    keyframes.forEach(key => {
-      if (key.joint === "j0")
-        this.timeline.to(this.animationData, { j0: key.value }, key.time)
-      if (key.joint === "j1")
-        this.timeline.to(this.animationData, { j1: key.value }, key.time)
-      if (key.joint === "j2")
-        this.timeline.to(this.animationData, { j2: key.value }, key.time)
+    keyframes.forEach((key, i) => {
+      // if (key.joint === "j0")
+      //   this.timeline.to(this.animationData, { j0: key.value }, key.dTime)
+      // if (key.joint === "j1")
+      //   this.timeline.to(this.animationData, { j1: key.value }, key.dTime)
+      // if (key.joint === "j2")
+      //   this.timeline.to(this.animationData, { j2: key.value }, key.dTime)
+      const animData = {
+        target: key.target,
+        value: key.keyframes[0].value
+      }
+      this.animationData.push(animData)
+      const kfs = []
+      key.keyframes.forEach(kf => {
+        const time = `${kf.time / animTime}%`
+        kfs.push({
+          time: { value: kf.value }
+        })
+      })
+      gsap.to(this.animationData[i], {
+        keyframes: kfs
+      })
+
     })
   }
 
