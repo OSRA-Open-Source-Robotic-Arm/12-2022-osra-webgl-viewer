@@ -43,26 +43,19 @@ class ThreeRobot {
       })
     })
 
-    AnimManager.addonUpdateCallBack(this.onTLUpdate, "three_tl_updater")
-
   }
 
-
-  onTLUpdate(animData) {
-    if (this.joints.length === 0)
-      return
-    this.joints[0].rotation.y = animData.j0
-    this.joints[1].rotation.z = animData.j1
-    this.joints[2].rotation.z = animData.j2
-  }
-
-
-  update() {
-
+  updateJoints(animData) {
+    animData.forEach(data => {
+      this.scene.traverse(child => {
+        if (child.name == data.target) {
+          child.rotation[data.axe] = data.value
+        }
+      })
+    })
   }
 
   bind() {
-    this.onTLUpdate = this.onTLUpdate.bind(this)
   }
 }
 

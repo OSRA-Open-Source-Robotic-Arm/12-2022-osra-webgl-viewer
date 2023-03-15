@@ -18,35 +18,37 @@ class AnimManager {
 
   onTLUpdate() {
     this.onUpdateCallBacks.forEach(obj => {
-      obj.callback(this.animationData)
+      const dataArray = []
+      this.animationData.forEach(data => {
+        dataArray.push({
+          target: data.target,
+          axe: data.axe,
+          value: data.value
+        })
+      })
+      obj.callback(dataArray)
     })
   }
 
   updateKeyframes(keyframes, animTime) {
     this.timeline.clear()
-    keyframes.forEach((key, i) => {
-      // if (key.joint === "j0")
-      //   this.timeline.to(this.animationData, { j0: key.value }, key.dTime)
-      // if (key.joint === "j1")
-      //   this.timeline.to(this.animationData, { j1: key.value }, key.dTime)
-      // if (key.joint === "j2")
-      //   this.timeline.to(this.animationData, { j2: key.value }, key.dTime)
+    this.animationData = []
+    keyframes.forEach((target, i) => {
       const animData = {
-        target: key.target,
-        value: key.keyframes[0].value
+        target: target.target,
+        axe: target.axe,
+        value: target.keyframes[0].value
       }
       this.animationData.push(animData)
-      const kfs = []
-      key.keyframes.forEach(kf => {
-        const time = `${kf.time / animTime}%`
-        kfs.push({
-          time: { value: kf.value }
-        })
-      })
-      gsap.to(this.animationData[i], {
-        keyframes: kfs
-      })
 
+      target.keyframes.forEach((kf, j) => {
+        if (j === 0)
+          return
+        this.timeline.to(this.animationData[0], {
+          value: kf.value,
+          duration: kf.time - target.keyframes[j - 1].time
+        }, target.keyframes[j - 1].time)
+      });
     })
   }
 

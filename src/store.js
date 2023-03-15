@@ -3,6 +3,7 @@ import { create } from 'zustand'
 const useStore = create((set) => ({
   keyframes: [{
     target: "j0",
+    axe: "y",
     keyframes: [
       {
         value: 0,
@@ -18,15 +19,14 @@ const useStore = create((set) => ({
       },]
   }
   ],
-  jointsState: {
-    j0: 0,
-    j1: 0,
-    j2: 0,
-  },
+  animData: [],
   animTime: 30.5,
   currentTime: 0,
   armPosition: 'arm_position',
   setAnimTime: (time) => set({ animTime: time }),
+  setAnimData: (data) => {
+    set({ animData: data })
+  },
   setArmPosition: (position) => set({ armPosition: position }),
   setCurrentTime: (time) => {
     set({ currentTime: time })

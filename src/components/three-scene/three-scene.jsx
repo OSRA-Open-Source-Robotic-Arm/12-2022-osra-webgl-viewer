@@ -4,17 +4,31 @@ import { useEffect } from "react"
 import { useRef } from "react"
 
 import MainThreeScene from "./three-scene-scripts/main-three-scene.js"
+import ThreeRobot from "./three-scene-scripts/three-robot"
 import AnimManager from "../../utils/js/anim-manager.js"
 import useStore from "../../store.js"
 
 function ThreeScene() {
   const keyframes = useStore((state) => state.keyframes)
   const currentTime = useStore((state) => state.currentTime)
+  const setAnimData = useStore((state) => state.setAnimData)
+  const animData = useStore((state) => state.animData)
   const threeContainer = useRef(null)
+
+
 
   useEffect(() => {
     MainThreeScene.init(threeContainer.current)
+    AnimManager.addonUpdateCallBack(onTlUpdate, "animUpdate")
   }, [])
+
+  function onTlUpdate(data) {
+    setAnimData(data)
+  }
+
+  useEffect(() => {
+    ThreeRobot.updateJoints(animData)
+  }, [animData])
 
   useEffect(() => {
     AnimManager.timeline.time(currentTime)
@@ -27,7 +41,6 @@ function ThreeScene() {
   return (
     <div className="three-scene">
       <div className="three-scene_container" ref={threeContainer}></div>
-
     </div>
   )
 }
