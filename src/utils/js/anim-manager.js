@@ -26,7 +26,10 @@ class AnimManager {
           value: data.value
         })
       })
-      obj.callback(dataArray)
+      obj.callback({
+        currentTime: this.timeline.time(),
+        animData: dataArray
+      })
     })
   }
 
@@ -48,7 +51,7 @@ class AnimManager {
           value: kf.value,
           duration: kf.time - target.keyframes[j - 1].time
         }, target.keyframes[j - 1].time)
-      });
+      })
     })
   }
 

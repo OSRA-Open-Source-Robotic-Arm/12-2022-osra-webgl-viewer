@@ -48,9 +48,15 @@ class TimeLineScraperManager {
     // this.scraper
   }
 
+  setProgress(currentTime) {
+    if (this.downFlag)
+      return
+    this.lastOffset = (currentTime / this.animTime) * this.scrapeSpace.clientWidth
+    this.moveTo(this.lastOffset)
+  }
+
   moveTo(xpos) {
     this.scraper.style = `transform:translate3d(${xpos}px,0 ,0);`
-
   }
 }
 

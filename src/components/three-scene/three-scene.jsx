@@ -11,6 +11,7 @@ import useStore from "../../store.js"
 function ThreeScene() {
   const keyframes = useStore((state) => state.keyframes)
   const currentTime = useStore((state) => state.currentTime)
+  const setCurrentTime = useStore((state) => state.setCurrentTime)
   const setAnimData = useStore((state) => state.setAnimData)
   const animData = useStore((state) => state.animData)
   const threeContainer = useRef(null)
@@ -23,7 +24,9 @@ function ThreeScene() {
   }, [])
 
   function onTlUpdate(data) {
-    setAnimData(data)
+    setAnimData(data.animData)
+    setCurrentTime(data.currentTime)
+
   }
 
   useEffect(() => {
