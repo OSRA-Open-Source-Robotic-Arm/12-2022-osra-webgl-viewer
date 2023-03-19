@@ -1,0 +1,70 @@
+@import '../../../../utils/scss/variables.scss';
+
+
+.timeline-kf-setter-parameter {
+  //width: 100%;
+  //height: 100%;
+  background-color: #1E1E1E;
+  padding: $line-height;
+
+  &_nom {
+
+    padding: .25rem;
+    display: flex;
+    justify-content: space-evenly;
+
+    &_axe {
+      width: 60px
+    }
+
+
+    &_line {
+      background: #2C2C2C;
+      height: 2px;
+      width: 50%;
+      align-self: center;
+      border-radius: 1rem;
+    }
+
+
+    &_add-position {
+      width: 12px;
+      height: 12px;
+      border: 0;
+      border-radius: 2px;
+      transform: rotate(45deg);
+      align-self: center;
+      cursor: pointer;
+    }
+
+
+    &_number {
+      display: flex;
+      justify-content: space-between;
+      width: 20%;
+      background-color: #2C2C2C;
+      padding: .2rem;
+      padding-left: .5rem;
+      padding-right: .5rem;
+      border-radius: .5rem;
+
+      &_unité-écrite {
+        color: #1E1E1E;
+      }
+    }
+  }
+
+  &_delete-keyFrame {
+    display: flex;
+    justify-content: center;
+
+    &_button {
+      background-color: #2C2C2C;
+      color: white;
+      margin-top: 2vh;
+      padding: 2%;
+      border-radius: 3vw;
+      border-color: transparent;
+    }
+  }
+}

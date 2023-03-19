@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-const useStore = create((set) => ({
+const useStore = create((set, get) => ({
   keyframes: [{
     target: "j0",
     axe: "y",
@@ -17,23 +17,68 @@ const useStore = create((set) => ({
         value: 0,
         time: 30,
       },]
-  }
+  },
+  {
+    target: "j1",
+    axe: "z",
+    keyframes: [
+      {
+        value: 0,
+        time: 0,
+      },
+
+    ]
+  },
+  {
+    target: "j2",
+    axe: "z",
+    keyframes: [
+      {
+        value: Math.PI,
+        time: 0,
+      },
+    ]
+  },
   ],
-  animData: [],
+  jointsState: [{
+    joint: 'j0',
+    axe: 'y',
+    value: 0
+  },
+  {
+    joint: 'j1',
+    axe: 'z',
+    value: 0
+  },
+  {
+    joint: 'j2',
+    axe: 'z',
+    value: 0
+  }],
   animTime: 30.5,
   currentTime: 0,
   armPosition: 'arm_position',
   setAnimTime: (time) => set({ animTime: time }),
-  setAnimData: (data) => {
-    set({ animData: data })
+  setJointsState: (data) => {
+    set({ jointsState: data })
   },
   setArmPosition: (position) => set({ armPosition: position }),
   setCurrentTime: (time) => {
     set({ currentTime: time })
   },
 
-  addKeyFrame: (keyframe) =>
-    set((state) => ({ keyframes: [...state.keyframes, keyframe] })),
+  addKeyframe: (obj) => {
+    const kfCopy = get().keyframes.map(copy => ({ ...copy }))
+    kfCopy.forEach(keyframeObject => {
+      if (keyframeObject.target === obj.target)
+        keyframeObject.keyframes.push({
+          value: obj.value,
+          time: obj.time
+        })
+    })
+
+    set((state) => ({ keyframes: kfCopy }))
+  },
 
   removeKeyFrame: (id) =>
     set((state) => ({ keyframes: state.keyframes.filter(obj => obj.id !== id) })),

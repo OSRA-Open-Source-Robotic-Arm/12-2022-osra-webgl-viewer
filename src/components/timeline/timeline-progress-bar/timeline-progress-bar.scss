@@ -1,14 +1,15 @@
 @import '../../../utils/scss/variables.scss';
 
-.reader {
+.timeline-progress-bar {
 
   background: 50% 50% / 73% no-repeat linear-gradient(to right, #2C2C2C, #2C2C2C), no-repeat linear-gradient(to right, #1E1E1E, #1E1E1E);
   width: 50%;
   height: 100%;
   z-index: 1;
   text-align: -webkit-center; //À changer ?
+  overflow: hidden;
 
-  &_secondes {
+  &_scrape-space {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,8 +50,8 @@
     flex-direction: column;
 
     &_black-line {
-      background-color: #1E1E1E;
-      height: .1rem;
+      background-color: black;
+      height: 1.2px;
       width: 100%;
       margin-top: $line-height + 1.2rem;
     }

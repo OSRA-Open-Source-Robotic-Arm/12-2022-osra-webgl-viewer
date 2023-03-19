@@ -21,7 +21,7 @@ class AnimManager {
       const dataArray = []
       this.animationData.forEach(data => {
         dataArray.push({
-          target: data.target,
+          joint: data.target,
           axe: data.axe,
           value: data.value
         })
@@ -47,12 +47,13 @@ class AnimManager {
       target.keyframes.forEach((kf, j) => {
         if (j === 0)
           return
-        this.timeline.to(this.animationData[0], {
+        this.timeline.to(this.animationData[i], {
           value: kf.value,
           duration: kf.time - target.keyframes[j - 1].time
         }, target.keyframes[j - 1].time)
       })
     })
+    this.onTLUpdate()
   }
 
   bind() {

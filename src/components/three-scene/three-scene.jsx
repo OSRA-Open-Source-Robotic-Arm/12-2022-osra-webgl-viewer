@@ -12,26 +12,25 @@ function ThreeScene() {
   const keyframes = useStore((state) => state.keyframes)
   const currentTime = useStore((state) => state.currentTime)
   const setCurrentTime = useStore((state) => state.setCurrentTime)
-  const setAnimData = useStore((state) => state.setAnimData)
-  const animData = useStore((state) => state.animData)
+  const setJointsState = useStore((state) => state.setJointsState)
+  const jointsState = useStore((state) => state.jointsState)
   const threeContainer = useRef(null)
-
-
 
   useEffect(() => {
     MainThreeScene.init(threeContainer.current)
+    ThreeRobot.initJointsStateSetter(setJointsState)
     AnimManager.addonUpdateCallBack(onTlUpdate, "animUpdate")
   }, [])
 
   function onTlUpdate(data) {
-    setAnimData(data.animData)
+    setJointsState(data.animData)
     setCurrentTime(data.currentTime)
-
   }
 
+
   useEffect(() => {
-    ThreeRobot.updateJoints(animData)
-  }, [animData])
+    ThreeRobot.updateJoints(jointsState)
+  }, [jointsState])
 
   useEffect(() => {
     AnimManager.timeline.time(currentTime)

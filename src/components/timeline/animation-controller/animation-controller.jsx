@@ -1,6 +1,6 @@
-import "./animation_controller.scss"
+import "./animation-controller.scss"
 import React, { useEffect, useRef, useState } from "react"
-import TimelineInput from '../../ui/timeline_input/timeline_input'
+import TimelineInput from '../../ui/timeline-input/timeline-input'
 import useStore from "../../../store"
 import { gsap } from "gsap"
 
@@ -29,8 +29,6 @@ export default function AnimationController() {
     AnimManager.timeline.play()
     setIsPlaying(true)
 
-    // gsap.to('.draggable'
-    //   , { duration: time, x: '36.75vw', delay: .5 })
   }
 
   function pause() {

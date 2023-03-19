@@ -1,7 +1,7 @@
 import "./timeline.scss"
 import TimelineKfSetter from './timeline-kf-setter/timeline-kf-setter'
-import TimelineProgressBar from './timeline_progress_bar/timeline_progress_bar'
-import AnimationController from './animation_controller/animation_controller'
+import TimelineProgressBar from './timeline-progress-bar/timeline-progress-bar'
+import AnimationController from './animation-controller/animation-controller'
 
 function Timeline() {
 

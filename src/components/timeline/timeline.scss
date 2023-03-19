@@ -4,12 +4,14 @@
 //Mettre les mêmes noms de la classe mère que le nom du component (à la place de preview par ex)
 
 .timeline {
-    width: 100%;
-    height: 30%;
-    color: white;
-    font-size: .75rem;
-    position: absolute;
-    display: flex;
-    bottom: 0;
-    font-family: 'helvetica-regular';
+  border-top: solid black 2px;
+
+  width: 100%;
+  height: 30%;
+  color: white;
+  font-size: .75rem;
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  font-family: 'helvetica-regular';
 }

@@ -8,7 +8,10 @@ import AnimManager from '../../../utils/js/anim-manager.js'
 class ThreeRobot {
   constructor() {
     this.bind()
+  }
 
+  initJointsStateSetter(setJointsState) {
+    this.setJointsState = setJointsState
   }
 
   init(scene) {
@@ -26,29 +29,44 @@ class ThreeRobot {
           child.material = mat
 
           if (child.name === "j0") {
-            MyGUI.add(child.rotation, "y", 0, Math.PI * 2).name("Joint 0 rotation")
             this.joints[0] = child
+            MyGUI.add(child.rotation, "y", 0, Math.PI * 2).name("Joint 0 rotation").onChange(() => { this.onGUIChange(child) })
           }
           if (child.name === "j1") {
-            MyGUI.add(child.rotation, "z", -Math.PI, Math.PI).name("Joint 1 rotation")
+            MyGUI.add(child.rotation, "z", -Math.PI, Math.PI).name("Joint 1 rotation").onChange(() => { this.onGUIChange(child) })
             this.joints[1] = child
 
           }
           if (child.name === "j2") {
-            MyGUI.add(child.rotation, "z", 0, Math.PI * 2).name("Joint 2 rotation")
+            MyGUI.add(child.rotation, "z", 0, Math.PI * 2).name("Joint 2 rotation").onChange(() => { this.onGUIChange(child) })
             this.joints[2] = child
 
           }
         }
       })
     })
-
   }
 
-  updateJoints(animData) {
-    animData.forEach(data => {
+  onGUIChange(child) {
+    console.log(this.jointsState)
+
+    const jointsStateUpdate = this.jointsState.map(obj => {
+      if (obj.joint === child.name) {
+        console.log(obj.axe)
+        return { ...obj, value: child.rotation[obj.axe] }
+      } else {
+        return obj
+      }
+    })
+    console.log(jointsStateUpdate)
+    this.setJointsState(jointsStateUpdate)
+  }
+
+  updateJoints(jointsState) {
+    this.jointsState = jointsState
+    jointsState.forEach(data => {
       this.scene.traverse(child => {
-        if (child.name == data.target) {
+        if (child.name == data.joint) {
           child.rotation[data.axe] = data.value
         }
       })
