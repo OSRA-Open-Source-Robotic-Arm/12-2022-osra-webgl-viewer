@@ -70,7 +70,7 @@ export default function TimelineProgressBar() {
             <div className="draggable" ref={dragTarget}>
               <div>
                 <div className="white-line">
-                  <img src="Group 1.svg" draggable="false" id="drag" className="drag" alt="Girl in a jacket" width="15" height="20"></img>
+                  <img src="Group1.svg" draggable="false" id="drag" className="drag" alt="Girl in a jacket" width="15" height="20"></img>
                 </div>
               </div>
             </div>

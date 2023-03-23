@@ -5,11 +5,14 @@ import { useRef } from "react"
 
 import MainThreeScene from "./three-scene-scripts/main-three-scene.js"
 import AnimManager from "../../utils/js/anim-manager.js"
+import ThreeRobot from "./three-scene-scripts/three-robot.js"
 import useStore from "../../store.js"
 
 function ThreeScene() {
   const keyframes = useStore((state) => state.keyframes)
+  const testPresentation = useStore((state) => state.testPresentation)
   const threeContainer = useRef(null)
+
 
   useEffect(() => {
     MainThreeScene.init(threeContainer.current)
@@ -18,6 +21,11 @@ function ThreeScene() {
   useEffect(() => {
     AnimManager.updateKeyframes(keyframes)
   }, [keyframes])
+
+  useEffect(() => {
+    console.log("changement")
+    ThreeRobot.setTestPresentation(testPresentation)
+  }, [testPresentation])
 
   return (
     <div className="three-scene">

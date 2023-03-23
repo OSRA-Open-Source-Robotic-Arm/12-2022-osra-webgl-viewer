@@ -52,19 +52,18 @@ export default function Positions() {
 
   function addNode(nodeClassName) {
     const transformed_animTime = five_multiple(Math.ceil(animTime));
-    console.log(transformed_animTime)
-    if (document.getElementById('drag') != null || document.getElementById('drag') != undefined) {
+    if (document.getElementById('drag') != null || document.getElementById('drag') !== undefined) {
       const pos_x = document.getElementById('drag').getBoundingClientRect();
       const pos_y = document.getElementsByClassName(nodeClassName)[0].getBoundingClientRect();
 
       if (keyFrames.find(el => 
-        el.position == nodeClassName && Math.abs(el.getBoundingClientRect().x - pos_x.x) < 50)) {
+        el.position === nodeClassName && Math.abs(el.getBoundingClientRect().x - pos_x.x) < 50)) {
         return
       }
       const box = document.createElement("div");
 
       //Put the id of the keyframe
-      if (keyFrames.length == 0) {
+      if (keyFrames.length === 0) {
         box.id = "0";
       }
       else {
@@ -85,24 +84,22 @@ export default function Positions() {
       box.style.position = "absolute";
       box.style.left = (100 * (((pos_x.x - timeline_draggable_first_position) /** 35 / transformed_animTime*/) + timeline_draggable_first_position) / window.innerWidth + .3) +'vw';
       box.style.top = pos_y.y + 14 +'px';
+      box.X_position = document.getElementById("axe-x").value
+      box.Y_position = document.getElementById("axe-y").value
+      box.Z_position = document.getElementById("axe-z").value
 
-      box.X_position = document.getElementById("axe-x").input_value
-      box.Y_position = document.getElementById("axe-y").input_value
-      box.Z_position = document.getElementById("axe-z").input_value
-
-      box.X_unit = document.getElementById("axe-x").unit
-      box.Y_unit = document.getElementById("axe-y").unit
-      box.Z_unit = document.getElementById("axe-z").unit
+      box.X_unit = document.getElementById("axe-x-unit").innerHTML
+      box.Y_unit = document.getElementById("axe-y-unit").innerHTML
+      box.Z_unit = document.getElementById("axe-z-unit").innerHTML
 
       keyFrames.push(box)
       document.body.appendChild(box);
-      console.log(box.arm_position)
     //box.width = '3px';
     }
   }
 
   function deleteNode(idNode) {
-    if (idNode == -1) return
+    if (idNode === -1) return
     //Delete from keyFrames
     keyFrames.splice(idNode, 1);
     //Select and remove node
@@ -116,12 +113,14 @@ export default function Positions() {
   }
 
   const handleSelectChange = (event) => {
+    handleInputChange();
+
     //Only show the correct keyframes
     for (let i = 0; i < keyFrames.length; i++) {
-      if (keyFrames[i].arm_position == armPosition) {
+      if (keyFrames[i].arm_position === armPosition) {
         document.getElementById(i.toString()).style.display = 'none';
       }
-      else if (keyFrames[i].arm_position == event) {
+      else if (keyFrames[i].arm_position === event) {
         document.getElementById(i.toString()).style.display = 'block';
       }
     }
@@ -129,7 +128,26 @@ export default function Positions() {
     //Change value
     setSelectValue(event);
 
-    setArmPosition(event)
+    setArmPosition(event);
+
+  };
+
+  const handleInputChange = () => {
+    for (let i = 0; i < keyFrames.length; i++) {
+      const newPosPx = /*(100 * */(((keyFrames[i].x - timeline_draggable_first_position) * keyFrames[i].firstAnimTime / five_multiple(Math.ceil(animTime))) 
+      + timeline_draggable_first_position)/* / window.innerWidth + .3)*//* +'vw'*/
+      const newPosVw = (newPosPx*100 / window.innerWidth + .3);
+
+      if (newPosVw <= (window.innerWidth - timeline_draggable_first_position - 5)*100/window.innerWidth) {
+        document.getElementById(i.toString()).style.left = newPosVw + 'vw';
+        keyFrames[i].prevNext = (((keyFrames[i].x - timeline_draggable_first_position) * keyFrames[i].firstAnimTime / five_multiple(Math.ceil(animTime))) 
+        + timeline_draggable_first_position);
+        if (keyFrames[i].arm_position === armPosition) document.getElementById(i.toString()).style.display = 'block';
+      }
+      else {
+        document.getElementById(i.toString()).style.display = 'none'
+      }
+    }
   };
 
   useEffect(() => {
@@ -147,19 +165,19 @@ export default function Positions() {
               <div className="positions_lignes_nom_axe">X Position</div>
               <div className="positions_lignes_nom_line"></div>
               <button className="positions_lignes_nom_add-position" onClick={() => addNode("X")}></button>
-              <TimelineInput input_id="axe-x" input_value={"10.33"} unit={"cm"} input_marginLeft={ "-11%" } />
+              <TimelineInput input_id="axe-x" input_value={"10.33"} span_id="axe-x-unit" unit={"cm"} input_marginLeft={ "-11%" } />
             </div>
             <div className="positions_lignes_nom Y">
               <div className="positions_lignes_nom_axe">Y Position</div>
               <div className="positions_lignes_nom_line"></div>
               <button className="positions_lignes_nom_add-position" onClick={() => addNode("Y")}></button>
-              <TimelineInput input_id="axe-y" input_value={"30.01"} unit={"cm"} input_marginLeft={ "-11%" } />
+              <TimelineInput input_id="axe-y" input_value={"30.01"} span_id="axe-y-unit" unit={"cm"} input_marginLeft={ "-11%" } />
             </div>
             <div className="positions_lignes_nom Z">
               <div className="positions_lignes_nom_axe">Z Position</div>
               <div className="positions_lignes_nom_line"></div>
               <button className="positions_lignes_nom_add-position" onClick={() => addNode("Z")}></button>
-              <TimelineInput input_id="axe-z" input_value={"01.06"} unit={"cm"} input_marginLeft={ "-11%" } />
+              <TimelineInput input_id="axe-z" input_value={"01.06"} span_id="axe-z-unit" unit={"cm"} input_marginLeft={ "-11%" } />
             </div>
             <div className="positions_lignes_delete-keyFrame">
               <button className="positions_lignes_delete-keyFrame_button" onClick={() => deleteNode(currentId)}>
